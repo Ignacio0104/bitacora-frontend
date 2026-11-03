@@ -1,0 +1,42 @@
+<div
+  #container
+  class="player"
+  [class.pseudo-fs]="pseudoFullscreen()"
+  (contextmenu)="$event.preventDefault()"
+>
+  <div class="frame"><div #host></div></div>
+
+  <!-- Intercepta los clics sobre YouTube; tocar el video hace play/pausa -->
+  <div class="overlay" (click)="togglePlay()"></div>
+
+  <div class="controls">
+    <button
+      type="button"
+      (click)="togglePlay()"
+      [disabled]="!ready()"
+      aria-label="Reproducir o pausar"
+    >
+      @if (playing()) {
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M6 5h4v14H6zM14 5h4v14h-4z" />
+        </svg>
+      } @else {
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M8 5v14l11-7z" />
+        </svg>
+      }
+    </button>
+
+    <button type="button" (click)="toggleFullscreen()" aria-label="Pantalla completa">
+      @if (nativeFullscreen() || pseudoFullscreen()) {
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M5 16h3v3h2v-5H5zm3-8H5v2h5V5H8zm6 11h2v-3h3v-2h-5zm2-11V5h-2v5h5V8z" />
+        </svg>
+      } @else {
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+          <path d="M7 14H5v5h5v-2H7zm-2-4h2V7h3V5H5zm12 7h-3v2h5v-5h-2zM14 5v2h3v3h2V5z" />
+        </svg>
+      }
+    </button>
+  </div>
+</div>

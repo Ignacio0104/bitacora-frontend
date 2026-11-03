@@ -1,0 +1,40 @@
+<main class="wrap">
+  <section class="card">
+    <h1>Completá tu perfil</h1>
+    <p class="sub">Necesitamos estos datos para activar tu cuenta.</p>
+
+    <form (submit)="submit($event)">
+      <label>
+        Nombre
+        <input
+          type="text"
+          autocomplete="given-name"
+          required
+          maxlength="60"
+          [value]="firstName()"
+          (input)="firstName.set($any($event.target).value)"
+        />
+      </label>
+
+      <label>
+        Apellido
+        <input
+          type="text"
+          autocomplete="family-name"
+          required
+          maxlength="60"
+          [value]="lastName()"
+          (input)="lastName.set($any($event.target).value)"
+        />
+      </label>
+
+      @if (error()) {
+        <p class="msg error">{{ error() }}</p>
+      }
+
+      <button class="btn primary" type="submit" [disabled]="loading()">Guardar y continuar</button>
+    </form>
+
+    <button class="link" type="button" (click)="logout()">Salir</button>
+  </section>
+</main>

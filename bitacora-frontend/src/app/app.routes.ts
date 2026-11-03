@@ -1,5 +1,11 @@
 import { Routes } from '@angular/router';
-import { guestGuard, profileGuard, studentGuard, subscribeGuard } from './core/auth/guards';
+import {
+  guestGuard,
+  profileGuard,
+  studentAreaGuard,
+  studentGuard,
+  subscribeGuard,
+} from './core/auth/guards';
 
 export const routes: Routes = [
   {
@@ -12,6 +18,11 @@ export const routes: Routes = [
     canActivate: [profileGuard],
     loadComponent: () =>
       import('./features/complete-profile/complete-profile').then((m) => m.CompleteProfile),
+  },
+  {
+    path: 'video/:id',
+    canActivate: [studentAreaGuard],
+    loadComponent: () => import('./features/watch/watch').then((m) => m.Watch),
   },
   {
     path: 'suscribirse',

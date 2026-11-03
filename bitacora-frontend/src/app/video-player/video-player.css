@@ -1,0 +1,64 @@
+:host {
+  display: block;
+}
+
+.player {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+.frame {
+  position: absolute;
+  inset: 0;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  cursor: pointer;
+}
+
+.controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem;
+  background: linear-gradient(transparent, rgb(0 0 0 / 70%));
+}
+.controls button {
+  background: none;
+  border: 0;
+  color: #fff;
+  padding: 0.5rem;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+.controls button:disabled {
+  opacity: 0.4;
+}
+
+/* Fullscreen nativo */
+.player:fullscreen,
+.player:-webkit-full-screen {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: auto;
+}
+
+/* Fallback para iPhone */
+.player.pseudo-fs {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  width: 100vw;
+  height: 100dvh;
+  aspect-ratio: auto;
+}

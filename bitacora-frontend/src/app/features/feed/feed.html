@@ -1,0 +1,31 @@
+<header class="top">
+  <h1>Mis clases</h1>
+  <div class="user">
+    <span>{{ auth.user()?.firstName ?? auth.user()?.email }}</span>
+    <button type="button" (click)="logout()">Salir</button>
+  </div>
+</header>
+
+<main class="content">
+  @if (loading()) {
+    <p class="state">Cargando clases...</p>
+  } @else if (error()) {
+    <p class="state">No pudimos cargar las clases. Recargá la página.</p>
+  } @else if (videos().length === 0) {
+    <p class="state">Todavía no hay clases disponibles.</p>
+  } @else {
+    <ul class="grid">
+      @for (v of videos(); track v.id) {
+        <li>
+          <a class="card" [routerLink]="['/video', v.id]">
+            <div class="thumb">
+              <img [src]="v.thumbnailUrl" [alt]="v.title" loading="lazy" />
+              <span class="time">{{ duration(v.durationSeconds) }}</span>
+            </div>
+            <h2>{{ v.title }}</h2>
+          </a>
+        </li>
+      }
+    </ul>
+  }
+</main>

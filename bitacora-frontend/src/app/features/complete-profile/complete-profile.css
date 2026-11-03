@@ -1,0 +1,76 @@
+.wrap {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: #f4f5f7;
+}
+.card {
+  width: 100%;
+  max-width: 400px;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgb(0 0 0 / 8%);
+  display: grid;
+  gap: 1rem;
+}
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.sub {
+  margin: 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+form {
+  display: grid;
+  gap: 1rem;
+}
+label {
+  display: grid;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+  color: #444;
+}
+input {
+  font: inherit;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+.btn {
+  font: inherit;
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  border: 0;
+  cursor: pointer;
+}
+.btn.primary {
+  background: #1a1a1a;
+  color: #fff;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+.msg.error {
+  margin: 0;
+  font-size: 0.875rem;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: #fdecec;
+  color: #b3261e;
+}
+.link {
+  background: none;
+  border: 0;
+  color: #0b5cad;
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  justify-self: start;
+  padding: 0;
+}

@@ -1,0 +1,14 @@
+<header class="top">
+  <a routerLink="/">← Volver</a>
+</header>
+
+<main class="content">
+  @if (loading()) {
+    <p class="state">Cargando...</p>
+  } @else if (playback(); as p) {
+    <app-video-player [youtubeId]="p.youtubeId" />
+    <h1>{{ p.title }}</h1>
+  } @else {
+    <p class="state">No encontramos este video.</p>
+  }
+</main>

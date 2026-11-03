@@ -28,6 +28,16 @@ function guardFor(path: string): CanActivateFn {
   };
 }
 
+/** Cualquier pantalla del área de alumnos (feed, video). */
+export const studentAreaGuard: CanActivateFn = () => {
+  const auth = inject(AuthService);
+  const router = inject(Router);
+  const user = auth.user();
+  if (!user) return router.parseUrl('/login');
+  const home = homeFor(user);
+  return home === '/' ? true : router.parseUrl(home);
+};
+
 export const profileGuard = guardFor('/completar-perfil');
 export const subscribeGuard = guardFor('/suscribirse');
 export const studentGuard = guardFor('/');
