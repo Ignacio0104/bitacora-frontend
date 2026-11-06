@@ -31,10 +31,14 @@ export class VideoPlayer implements AfterViewInit, OnDestroy {
   readonly nativeFullscreen = signal(false);
   readonly pseudoFullscreen = signal(false);
 
+  readonly currentTime = signal(0);
+  readonly duration = signal(0);
+  private readonly scrubbing = signal(false);
+
   private player: any;
+  private timer?: ReturnType<typeof setInterval>;
 
   constructor() {
-    // En el fallback (iPhone) bloqueamos el scroll de la página de fondo
     effect(() => {
       document.body.style.overflow = this.pseudoFullscreen() ? 'hidden' : '';
     });
@@ -58,16 +62,59 @@ export class VideoPlayer implements AfterViewInit, OnDestroy {
         origin: window.location.origin,
       },
       events: {
-        onReady: () => this.ready.set(true),
-        onStateChange: (e: { data: number }) => this.playing.set(e.data === 1),
+        onReady: () => {
+          this.ready.set(true);
+          this.duration.set(this.player.getDuration() || 0);
+        },
+        onStateChange: (e: { data: number }) => {
+          this.playing.set(e.data === 1);
+          if (!this.duration()) this.duration.set(this.player.getDuration() || 0);
+        },
         onError: (e: { data: number }) => console.error('Error del player:', e.data),
       },
     });
+
+    // Actualiza la barra de progreso unas 4 veces por segundo
+    this.timer = setInterval(() => {
+      if (this.ready() && !this.scrubbing()) {
+        this.currentTime.set(this.player.getCurrentTime() || 0);
+      }
+    }, 250);
   }
 
   togglePlay() {
     if (!this.ready()) return;
     this.playing() ? this.player.pauseVideo() : this.player.playVideo();
+  }
+
+  /** Mientras se arrastra: solo mueve la barra, sin saltar el video. */
+  onScrub(event: Event) {
+    this.scrubbing.set(true);
+    this.currentTime.set(Number((event.target as HTMLInputElement).value));
+  }
+
+  /** Al soltar: salta al punto elegido. */
+  onSeek(event: Event) {
+    const seconds = Number((event.target as HTMLInputElement).value);
+    this.player.seekTo(seconds, true);
+    this.currentTime.set(seconds);
+    this.scrubbing.set(false);
+  }
+
+  skip(delta: number) {
+    if (!this.ready()) return;
+    const target = Math.min(Math.max(this.player.getCurrentTime() + delta, 0), this.duration());
+    this.player.seekTo(target, true);
+    this.currentTime.set(target);
+  }
+
+  format(seconds: number) {
+    const s = Math.floor(seconds);
+    const h = Math.floor(s / 3600);
+    const m = Math.floor((s % 3600) / 60);
+    const sec = s % 60;
+    const pad = (n: number) => String(n).padStart(2, '0');
+    return h ? `${h}:${pad(m)}:${pad(sec)}` : `${m}:${pad(sec)}`;
   }
 
   toggleFullscreen() {
@@ -85,7 +132,7 @@ export class VideoPlayer implements AfterViewInit, OnDestroy {
 
     const request = el.requestFullscreen || el.webkitRequestFullscreen;
     if (!request) {
-      this.pseudoFullscreen.set(true); // iPhone: pantalla completa por CSS
+      this.pseudoFullscreen.set(true);
       return;
     }
     try {
@@ -101,6 +148,7 @@ export class VideoPlayer implements AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    clearInterval(this.timer);
     document.body.style.overflow = '';
     this.player?.destroy();
   }

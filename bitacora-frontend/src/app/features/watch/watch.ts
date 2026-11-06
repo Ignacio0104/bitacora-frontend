@@ -3,10 +3,11 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { Playback, VideosService } from '../../core/videos/videos.service';
 import { VideoPlayer } from '../../video-player/video-player';
+import { Logo } from '../../shared/logo/logo';
 
 @Component({
   selector: 'app-watch',
-  imports: [VideoPlayer, RouterLink],
+  imports: [VideoPlayer, RouterLink, Logo],
   templateUrl: './watch.html',
   styleUrl: './watch.css',
 })

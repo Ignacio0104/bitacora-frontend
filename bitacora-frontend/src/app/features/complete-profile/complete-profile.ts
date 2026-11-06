@@ -5,11 +5,13 @@ import { firstValueFrom } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AuthService, SessionUser } from '../../core/auth/auth.service';
 import { homeFor } from '../../core/auth/guards';
+import { Logo } from '../../shared/logo/logo';
 
 @Component({
   selector: 'app-complete-profile',
   templateUrl: './complete-profile.html',
   styleUrl: './complete-profile.css',
+  imports: [Logo],
 })
 export class CompleteProfile {
   private readonly http = inject(HttpClient);

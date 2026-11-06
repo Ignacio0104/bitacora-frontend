@@ -2,6 +2,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService, authErrorMessage } from '../../core/auth/auth.service';
 import { homeFor } from '../../core/auth/guards';
+import { Logo } from '../../shared/logo/logo';
 
 type Mode = 'login' | 'register' | 'reset';
 
@@ -9,6 +10,7 @@ type Mode = 'login' | 'register' | 'reset';
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrl: './login.css',
+  imports: [Logo],
 })
 export class Login {
   private readonly auth = inject(AuthService);

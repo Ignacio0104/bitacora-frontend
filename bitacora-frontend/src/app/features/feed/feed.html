@@ -1,5 +1,5 @@
 <header class="top">
-  <h1>Mis clases</h1>
+  <app-logo width="110px" />
   <div class="user">
     <span>{{ auth.user()?.firstName ?? auth.user()?.email }}</span>
     <button type="button" (click)="logout()">Salir</button>
@@ -7,6 +7,8 @@
 </header>
 
 <main class="content">
+  <h1>Mis clases</h1>
+
   @if (loading()) {
     <p class="state">Cargando clases...</p>
   } @else if (error()) {

@@ -1,0 +1,54 @@
+.wrap {
+  min-height: 100dvh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background: #f4f5f7;
+}
+.card {
+  width: 100%;
+  max-width: 420px;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgb(0 0 0 / 8%);
+  display: grid;
+  gap: 1rem;
+}
+h1 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+.sub {
+  margin: 0;
+  color: #666;
+  font-size: 0.95rem;
+}
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
+  border-radius: 10px;
+  font-weight: 600;
+  text-decoration: none;
+}
+.btn.whatsapp {
+  background: #25d366;
+  color: #fff;
+}
+.btn.insta {
+  border: 1px solid #ccc;
+  color: #222;
+}
+.link {
+  background: none;
+  border: 0;
+  color: #0b5cad;
+  font: inherit;
+  font-size: 0.875rem;
+  cursor: pointer;
+  justify-self: start;
+  padding: 0;
+}

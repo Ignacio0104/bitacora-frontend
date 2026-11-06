@@ -3,10 +3,11 @@ import { Router, RouterLink } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
 import { AuthService } from '../../core/auth/auth.service';
 import { VideoItem, VideosService } from '../../core/videos/videos.service';
+import { Logo } from '../../shared/logo/logo';
 
 @Component({
   selector: 'app-feed',
-  imports: [RouterLink],
+  imports: [RouterLink, Logo],
   templateUrl: './feed.html',
   styleUrl: './feed.css',
 })
