@@ -1,5 +1,8 @@
+const host = window.location.hostname;
+const isLocal = host === 'localhost' || host === '127.0.0.1' || /^192\.168\./.test(host);
+
 export const environment = {
-  apiUrl: 'http://localhost:3000',
+  apiUrl: isLocal ? `http://${host}:3000` : 'https://api.tudominio.com',
   firebase: {
     apiKey: 'AIzaSyDtlihxe1m6VUQCScQnht7zsg_w7jWguZ4',
     authDomain: 'bitacora-platform.firebaseapp.com',
