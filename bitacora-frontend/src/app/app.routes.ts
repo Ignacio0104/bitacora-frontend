@@ -35,5 +35,15 @@ export const routes: Routes = [
     canActivate: [studentGuard],
     loadComponent: () => import('./features/feed/feed').then((m) => m.Feed),
   },
+  {
+    path: 'terminos',
+    data: { page: 'terminos' },
+    loadComponent: () => import('./features/legal/legal').then((m) => m.Legal),
+  },
+  {
+    path: 'privacidad',
+    data: { page: 'privacidad' },
+    loadComponent: () => import('./features/legal/legal').then((m) => m.Legal),
+  },
   { path: '**', redirectTo: '' },
 ];

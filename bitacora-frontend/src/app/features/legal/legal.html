@@ -1,0 +1,93 @@
+<header class="top">
+  <a routerLink="/">← Volver</a>
+  <app-logo width="90px" />
+</header>
+
+<main class="legal">
+  @if (page === 'terminos') {
+    <h1>Términos y condiciones</h1>
+    <p class="updated">Última actualización: [FECHA]</p>
+
+    <h2>1. Servicio</h2>
+    <p>
+      Bitácora Vital ofrece clases grabadas de pilates, stretching y bienestar, a las que se accede
+      con una cuenta personal y un acceso activo. Titular del servicio: [NOMBRE O RAZÓN SOCIAL].
+    </p>
+
+    <h2>2. Cuenta y acceso</h2>
+    <p>
+      La cuenta es personal e intransferible. No podés compartir tus credenciales ni permitir que
+      otras personas usen tu acceso. Podemos suspender o dar de baja cuentas que incumplan estas
+      condiciones.
+    </p>
+
+    <h2>3. Contenido</h2>
+    <p>
+      Los videos y materiales son propiedad del titular y están protegidos por la ley de propiedad
+      intelectual. Queda prohibido grabarlos, descargarlos, copiarlos, difundirlos o ponerlos a
+      disposición de terceros, total o parcialmente.
+    </p>
+
+    <h2>4. Salud y responsabilidad</h2>
+    <p>
+      Las clases tienen fines de bienestar y no reemplazan el consejo médico. Antes de comenzar,
+      consultá con un profesional de la salud, en especial si tenés lesiones, embarazo o alguna
+      condición médica. Practicás bajo tu propia responsabilidad y debés detenerte ante dolor o
+      malestar.
+    </p>
+
+    <h2>5. Disponibilidad y cambios</h2>
+    <p>
+      Podemos modificar el catálogo, interrumpir el servicio por mantenimiento o actualizar estos
+      términos. Los cambios se publican en esta página.
+    </p>
+
+    <h2>6. Ley aplicable</h2>
+    <p>
+      Estos términos se rigen por las leyes de la República Argentina. Contacto: [EMAIL DE
+      CONTACTO].
+    </p>
+  } @else {
+    <h1>Política de privacidad</h1>
+    <p class="updated">Última actualización: [FECHA]</p>
+
+    <h2>1. Responsable</h2>
+    <p>[NOMBRE O RAZÓN SOCIAL], contacto: [EMAIL DE CONTACTO].</p>
+
+    <h2>2. Qué datos recopilamos</h2>
+    <p>
+      Nombre, apellido, email, foto de perfil (si ingresás con Google), método de acceso y fecha del
+      último ingreso. Si te contactás por WhatsApp o Instagram, esas plataformas procesan tus datos
+      según sus propias políticas.
+    </p>
+
+    <h2>3. Para qué los usamos</h2>
+    <p>
+      Para identificarte, administrar tu acceso a las clases y comunicarnos con vos sobre el
+      servicio. No vendemos tus datos.
+    </p>
+
+    <h2>4. Proveedores que intervienen</h2>
+    <p>
+      Google (Firebase) para la autenticación, Supabase para el almacenamiento de datos y YouTube
+      para la reproducción de videos. Estos proveedores pueden procesar datos fuera de Argentina.
+    </p>
+
+    <h2>5. Cookies</h2>
+    <p>
+      Usamos una única cookie técnica, necesaria para mantener tu sesión iniciada. No usamos cookies
+      publicitarias propias.
+    </p>
+
+    <h2>6. Tus derechos</h2>
+    <p>
+      Podés pedir el acceso, la rectificación o la eliminación de tus datos escribiendo a [EMAIL DE
+      CONTACTO]. La Agencia de Acceso a la Información Pública, en su carácter de órgano de control
+      de la Ley 25.326, atiende las denuncias y reclamos por incumplimientos de la normativa de
+      protección de datos personales.
+    </p>
+
+    <h2>7. Conservación</h2>
+    <p>Conservamos tus datos mientras tu cuenta esté activa, o hasta que pidas su eliminación.</p>
+  }
+</main>

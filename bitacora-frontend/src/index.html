@@ -9,8 +9,28 @@
       href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Jost:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+    <style>
+      .splash {
+        min-height: 100dvh;
+        display: grid;
+        place-items: center;
+        background: #f9f4ee;
+      }
+      .splash img {
+        width: 160px;
+        height: auto;
+        animation: splash-pulse 1.6s ease-in-out infinite;
+      }
+      @keyframes splash-pulse {
+        50% {
+          opacity: 0.45;
+        }
+      }
+    </style>
   </head>
   <body>
-    <app-root></app-root>
+    <app-root>
+      <div class="splash"><img src="/assets/images/logo.jpg" alt="Bitácora Vital" /></div>
+    </app-root>
   </body>
 </html>
